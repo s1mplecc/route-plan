@@ -1,11 +1,11 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
 public class Edge {
-    public int first;
-    public int second;
-    public int weight;
+    public String first;
+    public String second;
+    public double weight;
 
-    public Edge(int first, int second, int weight) {
+    public Edge(String first, String second, double weight) {
         this.first = first;
         this.second = second;
         this.weight = weight;

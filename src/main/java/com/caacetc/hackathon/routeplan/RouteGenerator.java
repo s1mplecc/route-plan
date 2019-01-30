@@ -11,23 +11,12 @@ import static com.caacetc.hackathon.routeplan.Point.*;
  * Generate all possible and legal routes.
  */
 public class RouteGenerator {
-    private List<Point> box;
     private List<Route> routes = new ArrayList<>();
 
-    public List<Route> routes() {
-        return routes;
-    }
-
-    public void initBox() {
-        this.box = Lists.newArrayList(V1, V2, V3, S1, S2, S3);
-    }
-
-    public void generate() {
-        initBox();
+    public List<Route> generate() {
         Route route = new Route();
-        if (box.size() > 1) {
-            fork(route, box);
-        }
+        fork(route, Lists.newArrayList(V1, V2, V3, S1, S2, S3));
+        return routes;
     }
 
     private void fork(Route route, List<Point> remain) {

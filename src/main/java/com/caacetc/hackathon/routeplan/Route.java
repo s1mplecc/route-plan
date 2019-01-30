@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Route {
     private final List<Point> route;
@@ -20,17 +19,11 @@ public class Route {
     }
 
     public int length() {
-        List<Integer> indexes = route.stream()
-                .map(point -> point.index())
-                .collect(Collectors.toList());
-
         int length = 0;
-
         for (int i = 0; i < route.size() - 1; i++) {
             length += Run.minLength(route.get(i).index(), route.get(i + 1).index());
         }
-
-//        Run.minLength()
+        length += Run.minLength("2", route.get(0).index());
         return length;
     }
 
@@ -40,7 +33,6 @@ public class Route {
         }
 
         boolean firstIsV = route.get(0).isV();
-
 
         return firstIsV && lastIsS() && !isContinueThree() && !isSNotHaveVBefore();
     }

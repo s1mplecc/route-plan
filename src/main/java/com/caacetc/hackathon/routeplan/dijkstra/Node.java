@@ -1,11 +1,13 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
 public class Node {
-    int id;
-    Node(){
+    String id;
+    boolean treat;
+
+    Node() {
     }
-    Node(int id){
+
+    Node(String id) {
         this.id = id;
     }
-    boolean treat;
 }

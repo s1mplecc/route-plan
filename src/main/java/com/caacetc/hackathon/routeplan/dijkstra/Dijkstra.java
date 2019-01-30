@@ -1,6 +1,5 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,18 +7,18 @@ public class Dijkstra {
     /**
      * 存储每个点的最短距离经过的点以及当前到该点的最短距离
      */
-    private HashMap<Integer, storageFrontPointAndNowSumWieght> path = new HashMap<>();
+    private HashMap<String, storageFrontPointAndNowSumWieght> path = new HashMap<String, storageFrontPointAndNowSumWieght>();
 
-    public int getMinLength(Graph graph, int start, int end) {
+    public double getMinLength(Graph graph, String start, String end) {
         initializeSourceToOtherMinDistance(graph, start, end);
         Node node = new Node();
         node = returnNowSourceToOtherDistance(graph, start);
         //更新从源点出发到其他点的最短距离
-        while (node != null && !(node.id == end)) {
+        while (node != null && !node.id.equals(end)) {
             storageFrontPointAndNowSumWieght info = path.get(node.id);
-            int tempWeight = info.weight;
+            double tempWeight = info.weight;
             for (Node v : graph.node) {
-                if (v.id == start || v.id == node.id || v.treat) {
+                if (v.id.equals(start) || v.id.equals(node.id) || v.treat) {
                     continue;
                 } else {
                     info = path.get(v.id);
@@ -40,13 +39,13 @@ public class Dijkstra {
     /**
      * 初始化从源点到其他点的最短距离
      */
-    private void initializeSourceToOtherMinDistance(Graph graph, int start, int end) {
+    private void initializeSourceToOtherMinDistance(Graph graph, String start, String end) {
         ArrayList<Node> node = graph.node;
         for (Node v : node) {
-            if (v.id == start) {
+            if (v.id.equals(start)) {
                 continue;
             } else {
-                int weight = getBetweenAnyTwoPointWeight(start, v.id, graph);
+                double weight = getBetweenAnyTwoPointWeight(start, v.id, graph);
                 ArrayList list = new ArrayList();
                 list.add(start);
                 storageFrontPointAndNowSumWieght info = new storageFrontPointAndNowSumWieght(v, list, weight);
@@ -59,13 +58,13 @@ public class Dijkstra {
     /**
      * 返回此时从源点到其他点的最短距离
      */
-    private Node returnNowSourceToOtherDistance(Graph graph, int start) {
-        int weight = Integer.MAX_VALUE;
+    private Node returnNowSourceToOtherDistance(Graph graph, String start) {
+        double weight = Double.MAX_VALUE;
         Node temp = null;
         ArrayList<Node> node = graph.node;
         storageFrontPointAndNowSumWieght info = new storageFrontPointAndNowSumWieght();
         for (int i = 0; i < node.size(); i++) {
-            if (!(node.get(i).id == start) && !node.get(i).treat) {
+            if (!node.get(i).id.equals(start) && !node.get(i).treat) {
                 info = this.path.get(node.get(i).id);
                 if (info.weight < weight) {
                     weight = info.weight;
@@ -84,24 +83,25 @@ public class Dijkstra {
     /**
      * 得到任意两个点之间的距离
      */
-    private int getBetweenAnyTwoPointWeight(int start, int end, Graph graph) {
+    private double getBetweenAnyTwoPointWeight(String start, String end, Graph graph) {
         Edge[] edge = graph.edge;
         for (Edge e : edge) {
-            if (e.first == start && e.second == end || (e.first == end && e.second == start)) {
+            if (e.first.equals(start) && e.second.equals(end) || (e.first.equals(end) && e.second.equals(start))) {
                 return e.weight;
             } else {
             }
         }
-        return Integer.MAX_VALUE;
+        return Double.MAX_VALUE;
     }
 
-    private int getResult(int end) {
+    private double getResult(String end) {
         storageFrontPointAndNowSumWieght info = path.get(end);
-        for (Integer s : info.list) {
+        for (String s : info.list) {
             System.out.print(s + "——>");
         }
         System.out.print(end);
         System.out.println("最短路径长度:" + info.weight);
+
         return info.weight;
     }
 
@@ -110,10 +110,10 @@ public class Dijkstra {
      */
     class storageFrontPointAndNowSumWieght {
         Node curNode;
-        int weight;
-        ArrayList<Integer> list = new ArrayList();
+        double weight;
+        ArrayList<String> list = new ArrayList();
 
-        public storageFrontPointAndNowSumWieght(Node curNode, ArrayList list, int weight) {
+        public storageFrontPointAndNowSumWieght(Node curNode, ArrayList list, double weight) {
             this.curNode = curNode;
             this.list = list;
             this.weight = weight;

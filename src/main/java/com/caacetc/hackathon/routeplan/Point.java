@@ -16,8 +16,8 @@ public enum Point {
         this.index = index;
     }
 
-    public int index() {
-        return index;
+    public String index() {
+        return Integer.toString(index);
     }
 
     public boolean isV() {
