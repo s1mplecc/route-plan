@@ -1,9 +1,9 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
-public class Run {
-    public static double minLength(String start, String end) {
-        String[] verticx = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};//顶点的集合
-        //边的集合
+public class Util {
+    public static double minDistance(String start, String end) {
+        String[] verticx = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
+
         Edge edge1 = new Edge("1", "2", 1);
         Edge edge2 = new Edge("1", "5", 1);
         Edge edge3 = new Edge("2", "3", 2);
@@ -26,11 +26,9 @@ public class Run {
         Edge edge20 = new Edge("13", "14", 1);
         Edge edge21 = new Edge("14", "15", 1);
 
-        Edge[] edge = {edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8, edge9, edge10, edge11, edge12, edge13, edge14, edge15, edge16, edge17, edge18, edge19, edge20
-                , edge21};
+        Edge[] edge = {edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8, edge9, edge10, edge11, edge12, edge13, edge14, edge15, edge16, edge17, edge18, edge19, edge20, edge21};
         Dijkstra dij = new Dijkstra();
-        System.out.println("由起点" + start + "到终点" + end + "的最短路径为：");
         Graph graph = new Graph(verticx, edge);
-        return dij.getMinLength(graph, start, end);
+        return dij.getMinDistance(graph, start, end);
     }
 }

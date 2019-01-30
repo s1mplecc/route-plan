@@ -1,6 +1,6 @@
 package com.caacetc.hackathon.routeplan;
 
-import com.caacetc.hackathon.routeplan.dijkstra.Run;
+import com.caacetc.hackathon.routeplan.dijkstra.Util;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -21,9 +21,9 @@ public class Route {
     public int length() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
-            length += Run.minLength(route.get(i).index(), route.get(i + 1).index());
+            length += Util.minDistance(route.get(i).index(), route.get(i + 1).index());
         }
-        length += Run.minLength("2", route.get(0).index());
+        length += Util.minDistance("2", route.get(0).index());
         return length;
     }
 

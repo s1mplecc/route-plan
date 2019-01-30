@@ -1,13 +1,14 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Graph {
-    ArrayList<Node> node = new ArrayList();
+class Graph {
+    List<Node> node = new ArrayList<>();
     Edge[] edge;
 
-    Graph(String[] arrary, Edge[] edge) {
-        for (String s : arrary) {
+    Graph(String[] strings, Edge[] edge) {
+        for (String s : strings) {
             Node v = new Node(s);
             node.add(v);
         }
