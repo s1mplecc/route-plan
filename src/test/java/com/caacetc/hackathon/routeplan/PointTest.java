@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PointTest {
     @Test
-    void should_() {
+    void should_point_methods_correct() {
         assertThat(S1.isS()).isTrue();
         assertThat(S2.isV()).isFalse();
         assertThat(V3.isV()).isTrue();

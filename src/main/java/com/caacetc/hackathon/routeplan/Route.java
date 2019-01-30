@@ -1,6 +1,6 @@
 package com.caacetc.hackathon.routeplan;
 
-import com.caacetc.hackathon.routeplan.dijkstra.Util;
+import com.caacetc.hackathon.routeplan.dijkstra.DistanceUtil;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Route {
     private final List<Point> route;
-    private int length;
 
     public Route() {
         route = new ArrayList<>();
@@ -21,9 +20,9 @@ public class Route {
     public int length() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
-            length += Util.minDistance(route.get(i).index(), route.get(i + 1).index());
+            length += DistanceUtil.min(route.get(i).index(), route.get(i + 1).index());
         }
-        length += Util.minDistance("2", route.get(0).index());
+        length += DistanceUtil.min("2", route.get(0).index());
         return length;
     }
 
@@ -80,7 +79,7 @@ public class Route {
         for (Point point : route) {
             sb.append(point).append(" -> ");
         }
-        sb.delete(sb.length() - 4, sb.length() - 1);
+        sb.delete(sb.length() - 4, sb.length());
         return sb.toString();
     }
 }

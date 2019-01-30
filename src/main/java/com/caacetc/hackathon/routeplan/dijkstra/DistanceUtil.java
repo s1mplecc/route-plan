@@ -1,7 +1,7 @@
 package com.caacetc.hackathon.routeplan.dijkstra;
 
-public class Util {
-    public static double minDistance(String start, String end) {
+public class DistanceUtil {
+    public static double min(String start, String end) {
         String[] verticx = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
 
         Edge edge1 = new Edge("1", "2", 1);
