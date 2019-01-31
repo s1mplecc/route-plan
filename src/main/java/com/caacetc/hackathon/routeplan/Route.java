@@ -17,7 +17,7 @@ public class Route {
         this.route = route;
     }
 
-    public int length() {
+    public int minDistance() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
             length += DistanceUtil.min(route.get(i).index(), route.get(i + 1).index());
