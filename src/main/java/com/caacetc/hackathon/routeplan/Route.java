@@ -29,6 +29,7 @@ public class Route {
         return new Route(Lists.newArrayList(route));
     }
 
+    // todo
     public int minDistance() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
