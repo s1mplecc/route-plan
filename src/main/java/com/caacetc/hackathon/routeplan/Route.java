@@ -17,6 +17,18 @@ public class Route {
         this.route = route;
     }
 
+    public void add(Point point) {
+        route.add(point);
+    }
+
+    public int size() {
+        return route.size();
+    }
+
+    public Route copy() {
+        return new Route(Lists.newArrayList(route));
+    }
+
     public int minDistance() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
@@ -31,19 +43,19 @@ public class Route {
             return true;
         }
 
-        boolean firstIsV = route.get(0).isV();
-
-        return firstIsV && lastIsS() && !isContinueThree() && !isSNotHaveVBefore();
+        return firstIsV() && lastIsS() && !continue3V() && existVBeforeS();
     }
 
-    private boolean isSNotHaveVBefore() {
+    private boolean firstIsV() {
+        return route.get(0).isV();
+    }
+
+    private boolean existVBeforeS() {
         Point last = route.get(route.size() - 1);
-
         if (last.isS()) {
-            return !last.haveVBefore(route);
+            return last.existVBefore(route);
         }
-
-        return false;
+        return true;
     }
 
     private boolean lastIsS() {
@@ -53,24 +65,12 @@ public class Route {
         return route.get(route.size() - 1).isS();
     }
 
-    private boolean isContinueThree() {
+    private boolean continue3V() {
         if (route.size() < 3) {
             return false;
         }
 
         return route.subList(0, 3).stream().allMatch(Point::isV);
-    }
-
-    public void add(Point point) {
-        route.add(point);
-    }
-
-    public int size() {
-        return route.size();
-    }
-
-    public Route copy() {
-        return new Route(Lists.newArrayList(route));
     }
 
     @Override

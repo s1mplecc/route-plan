@@ -3,6 +3,7 @@ package com.caacetc.hackathon.routeplan;
 import java.util.List;
 
 public enum Point {
+    A(2),
     V1(3),
     V2(7),
     V3(4),
@@ -28,7 +29,10 @@ public enum Point {
         return this.toString().startsWith("S");
     }
 
-    public boolean haveVBefore(List<Point> route) {
+    public boolean existVBefore(List<Point> route) {
+        if (this.equals(A)) {
+            return false;
+        }
         return route.stream().anyMatch(point -> point.toString().equals("V" + this.toString().charAt(1)));
     }
 }

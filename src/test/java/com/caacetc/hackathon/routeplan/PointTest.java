@@ -16,8 +16,8 @@ class PointTest {
         assertThat(V3.isV()).isTrue();
 
         List<Point> points = Lists.newArrayList(V1, V2, S1);
-        assertThat(S1.haveVBefore(points)).isTrue();
-        assertThat(S2.haveVBefore(points)).isTrue();
-        assertThat(S3.haveVBefore(points)).isFalse();
+        assertThat(S1.existVBefore(points)).isTrue();
+        assertThat(S2.existVBefore(points)).isTrue();
+        assertThat(S3.existVBefore(points)).isFalse();
     }
 }

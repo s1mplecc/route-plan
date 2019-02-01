@@ -14,22 +14,23 @@ public class RouteGenerator {
     private List<Route> routes = new ArrayList<>();
 
     public List<Route> generate() {
-        Route route = new Route();
-        fork(route, Lists.newArrayList(V1, V2, V3, S1, S2, S3));
+        fork(new Route(), List.of(V1, V2, V3, S1, S2, S3));
         return routes;
     }
 
-    private void fork(Route route, List<Point> remain) {
-        int size = remain.size();
-
-        for (int i = 0; i < size; i++) {
+    /**
+     * @param route  an unmodifiable route
+     * @param remain an unmodifiable remain points list
+     */
+    private void fork(final Route route, final List<Point> remain) {
+        for (int i = 0; i < remain.size(); i++) {
             if (!route.isLegal()) {
                 return;
             }
 
             List<Point> temp = Lists.newArrayList(remain);
-            Route route1 = route.copy();
             Point next = temp.remove(i);
+            Route route1 = route.copy();
             route1.add(next);
             fork(route1, temp);
 
