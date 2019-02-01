@@ -1,7 +1,5 @@
 package com.caacetc.hackathon.routeplan;
 
-import java.util.List;
-
 import static com.caacetc.hackathon.routeplan.Point.Type.*;
 
 
@@ -40,13 +38,6 @@ public enum Point {
         }
 
         return Point.valueOf("V" + this.toString().charAt(1));
-    }
-
-    public boolean existVBefore(List<Point> route) {
-        if (this.equals(A)) {
-            return false;
-        }
-        return route.stream().anyMatch(point -> point.toString().equals("V" + this.toString().charAt(1)));
     }
 
     public enum Type {

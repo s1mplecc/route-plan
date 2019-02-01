@@ -23,11 +23,11 @@ public class RouteGenerator {
      * @param remain an unmodifiable remain points list
      */
     private void fork(final Route route, final List<Point> remain) {
-        for (int i = 0; i < remain.size(); i++) {
-            if (!route.isLegal()) {
-                return;
-            }
+        if (!route.isLegal()) {
+            return;
+        }
 
+        for (int i = 0; i < remain.size(); i++) {
             List<Point> temp = Lists.newArrayList(remain);
             Point next = temp.remove(i);
             Route route1 = route.copy();
