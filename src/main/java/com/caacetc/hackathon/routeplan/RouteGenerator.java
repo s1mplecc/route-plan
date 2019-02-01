@@ -27,17 +27,18 @@ public class RouteGenerator {
             return;
         }
 
+        if (route.size() == 6) {
+            routes.add(route);
+            return;
+        }
+
         for (int i = 0; i < remain.size(); i++) {
             List<Point> temp = Lists.newArrayList(remain);
             Point next = temp.remove(i);
             Route route1 = route.copy();
             route1.add(next);
-            fork(route1, temp);
 
-            if (route1.size() == 6) {
-                routes.add(route1);
-                return;
-            }
+            fork(route1, temp);
         }
     }
 
