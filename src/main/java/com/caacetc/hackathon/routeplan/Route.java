@@ -43,19 +43,20 @@ public class Route {
             return true;
         }
 
-        return firstIsV() && lastIsS() && !continue3V() && existVBeforeS();
+        return firstIsV() && lastIsS() && !continue3V() && sAfterMatchedV();
     }
 
     private boolean firstIsV() {
         return route.get(0).isV();
     }
 
-    private boolean existVBeforeS() {
+    private boolean sAfterMatchedV() {
         Point last = route.get(route.size() - 1);
-        if (last.isS()) {
-            return last.existVBefore(route);
+        if (!last.isS()) {
+            return true;
+        } else {
+            return route.contains(last.matchedV());
         }
-        return true;
     }
 
     private boolean lastIsS() {

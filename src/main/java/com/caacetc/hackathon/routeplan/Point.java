@@ -2,19 +2,24 @@ package com.caacetc.hackathon.routeplan;
 
 import java.util.List;
 
+import static com.caacetc.hackathon.routeplan.Point.Type.*;
+
+
 public enum Point {
-    A(2),
-    V1(3),
-    V2(7),
-    V3(4),
-    S1(12),
-    S2(11),
-    S3(13);
+    A(2, START),
+    V1(3, VIP),
+    V2(7, VIP),
+    V3(4, VIP),
+    S1(12, DESTINATION),
+    S2(11, DESTINATION),
+    S3(13, DESTINATION);
 
     private final int index;
+    private final Type type;
 
-    Point(int index) {
+    Point(int index, Type type) {
         this.index = index;
+        this.type = type;
     }
 
     public String index() {
@@ -22,11 +27,19 @@ public enum Point {
     }
 
     public boolean isV() {
-        return this.toString().startsWith("V");
+        return type.equals(VIP);
     }
 
     public boolean isS() {
-        return this.toString().startsWith("S");
+        return type.equals(DESTINATION);
+    }
+
+    public Point matchedV() {
+        if (!this.isS()) {
+            throw new RuntimeException();
+        }
+
+        return Point.valueOf("V" + this.toString().charAt(1));
     }
 
     public boolean existVBefore(List<Point> route) {
@@ -34,5 +47,9 @@ public enum Point {
             return false;
         }
         return route.stream().anyMatch(point -> point.toString().equals("V" + this.toString().charAt(1)));
+    }
+
+    public enum Type {
+        VIP, DESTINATION, START
     }
 }
