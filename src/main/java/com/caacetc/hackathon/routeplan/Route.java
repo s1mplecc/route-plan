@@ -13,7 +13,7 @@ public class Route {
         route = new ArrayList<>();
     }
 
-    private Route(List<Point> route) {
+    public Route(List<Point> route) {
         this.route = route;
     }
 
