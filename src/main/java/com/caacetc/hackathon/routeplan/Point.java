@@ -20,8 +20,8 @@ public enum Point {
         this.type = type;
     }
 
-    public String index() {
-        return Integer.toString(index);
+    public int index() {
+        return index;
     }
 
     public boolean isV() {

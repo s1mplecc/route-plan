@@ -1,6 +1,5 @@
 package com.caacetc.hackathon.routeplan;
 
-import com.caacetc.hackathon.routeplan.dijkstra.DistanceUtil;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -8,6 +7,7 @@ import java.util.List;
 
 public class Route {
     private final List<Point> route;
+    private final Dijkstra dijkstra = new Dijkstra(new Graph());
 
     public Route() {
         route = new ArrayList<>();
@@ -29,13 +29,12 @@ public class Route {
         return new Route(Lists.newArrayList(route));
     }
 
-    // todo
     public int minDistance() {
         int length = 0;
         for (int i = 0; i < route.size() - 1; i++) {
-            length += DistanceUtil.min(route.get(i).index(), route.get(i + 1).index());
+            length += dijkstra.min(route.get(i).index(), route.get(i + 1).index());
         }
-        length += DistanceUtil.min("2", route.get(0).index());
+        length += dijkstra.min(2, route.get(0).index());
         return length;
     }
 

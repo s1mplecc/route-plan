@@ -41,7 +41,7 @@ public class Dijkstra {
             }
         }
 
-        System.out.println(String.format("from %d to %d distance %d", start, end, dis[end - 1]));
+//        System.out.println(String.format("from %d to %d distance %d", start, end, dis[end - 1]));
 
         return dis[end - 1];
     }
