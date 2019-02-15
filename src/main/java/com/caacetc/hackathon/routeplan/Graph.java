@@ -1,9 +1,10 @@
 package com.caacetc.hackathon.routeplan;
 
 public class Graph {
-    public static final int I = Integer.MAX_VALUE;
+    private static final int I = Integer.MAX_VALUE;
+    public static final int INFINITY = I;
 
-    public static int[][] matrix() {
+    public int[][] matrix() {
         return new int[][]{
 //               1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
                 {0, 1, I, I, 1, I, I, I, I, I, I, I, I, I, I}, // 1
