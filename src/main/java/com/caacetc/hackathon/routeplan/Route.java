@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Route {
     private final List<Point> route;
@@ -30,12 +31,14 @@ public class Route {
     }
 
     public int minDistance() {
-        int length = 0;
-        for (int i = 0; i < route.size() - 1; i++) {
-            length += dijkstra.min(route.get(i).index(), route.get(i + 1).index());
-        }
-        length += dijkstra.min(2, route.get(0).index());
-        return length;
+        AtomicReference<Point> pre = new AtomicReference<>(Point.A);
+        return route.stream()
+                .map(p -> {
+                    int min = dijkstra.min(pre.get().index(), p.index());
+                    pre.set(p);
+                    return min;
+                })
+                .reduce(0, (i1, i2) -> i1 + i2);
     }
 
     public boolean isLegal() {

@@ -4,6 +4,7 @@ public class Graph {
     private static final int I = Integer.MAX_VALUE;
     public static final int INFINITY = I;
 
+    // todo: maybe read from graph with python
     public int[][] matrix() {
         return new int[][]{
 //               1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
@@ -28,7 +29,7 @@ public class Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= 15; i++) {
+        for (int i = 1; i <= matrix()[0].length; i++) {
             sb.append(String.format("|%3s", i));
         }
         sb.append("\n");
