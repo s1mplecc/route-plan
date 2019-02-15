@@ -2,10 +2,9 @@ package com.caacetc.hackathon.routeplan;
 
 import org.junit.jupiter.api.Test;
 
-class GraphTest {
+class DijkstraTest {
     @Test
     public void should_() {
-        System.out.println(new Graph());
-    }
 
+    }
 }

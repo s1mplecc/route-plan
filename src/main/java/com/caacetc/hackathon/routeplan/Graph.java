@@ -29,20 +29,15 @@ public class Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= matrix()[0].length; i++) {
-            sb.append(String.format("|%3s", i));
-        }
-        sb.append("\n");
         for (int[] ints : matrix()) {
             for (int i : ints) {
-                sb.append("| ");
                 if (i == Integer.MAX_VALUE) {
                     sb.append("∞").append("\t");
                 } else {
                     sb.append(i).append("\t");
                 }
             }
-            sb.append("|").append("\n");
+            sb.append("\n");
         }
         return sb.toString();
     }
