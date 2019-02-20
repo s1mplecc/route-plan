@@ -2,7 +2,7 @@
 
 图中有一个无向图，其中圈内数字代表一个地点，边线上的数字代表长度 Le（双向相同）。机场一辆小型VIP电动摆渡车在起点 A，要去 3 个贵宾厅（V1，V2，V3）接贵宾（每个贵宾厅限1个VIP），送到 3 个对应航班机位（S1，S2，S3），即 V1 至 S1，V2 至 S2，V3 至 S3。VIP 电动摆渡车同时最多装下 2 个 VIP。
 
-![ff858a30049f1753177d2691a50f09b1.jpeg](https://s1mple.xyz/2019/02/15/一道有趣的路径规划算法题（Java-版）/1.jpg)
+![ff858a30049f1753177d2691a50f09b1.jpeg](https://ws1.sinaimg.cn/large/dae6eda4gy1g0ctydyarcj20fe093q3f.jpg)
 
 **要求**：VIP 电动摆渡车该怎么走路径最短？这个最短路径的长度是多少？这里 A 是出发点，最后一个 VIP（不限次序）送达地为终点。为了简化问题，假设贵宾厅VIP已在贵宾厅等候上车，VIP 电动摆渡车在接送期间不用等待。
 
@@ -83,7 +83,7 @@ public class Route {
 5. 第 4 步是一个**递归**的步骤，如下图，假设第一个点装入了 V1，第二个点在装入的时候可以装入 V2、V3、S1、S2、S3，其中 S2、S3 因为不合法而终止递归，剩下的 V2、V3、S1 三个点 fork 出三种情况继续向下递归。
 6. 直到 Route 将六个点全部装入后，将该 Route 加入第 1 步的容器中。
 
-![3921ebbd368ce17e79a7b2f574d7673c.jpeg](evernotecid://158BCD08-F1F3-43B5-914B-4EB5ADC3ABA7/appyinxiangcom/18284037/ENResource/p279)
+![3921ebbd368ce17e79a7b2f574d7673c.jpeg](https://ws1.sinaimg.cn/large/dae6eda4gy1g0ctye5imqj21hc0u0agf.jpg)
 
 **RouteGenerator** 类，用于生成所有符合条件的路线。
 
@@ -145,7 +145,7 @@ A -> V3 -> S3 -> V2 -> S2 -> V1 -> S1
 
 Dijkstra 算法的核心建模思想是使用一个二维数组，记录每个顶点到其他顶点的距离，如果不能直达，则设为 ∞。那么本题的图可以使用如下二维数组来表示，由于是无向图，所以关于对角线对称。
 
-![afe039363dc9b79e775321fa5a6dee22.png](evernotecid://158BCD08-F1F3-43B5-914B-4EB5ADC3ABA7/appyinxiangcom/18284037/ENResource/p291)
+![afe039363dc9b79e775321fa5a6dee22.png](https://ws1.sinaimg.cn/large/dae6eda4gy1g0ctyevetej20ku0k7dkj.jpg)
 
 反应在 Java 代码中则是如下：
 
